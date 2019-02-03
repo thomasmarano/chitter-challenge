@@ -1,5 +1,14 @@
+require File.join(File.dirname(__FILE__), '..', 'app.rb')
+
+require 'capybara/rspec'
+require 'capybara'
+require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
+
+Capybara.app = PeepManager
+
+ENV['ENVIRONMENT'] = 'test'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
