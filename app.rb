@@ -5,18 +5,18 @@ require_relative 'lib/peep'
 class PeepManager < Sinatra::Base
 
   get '/' do
+      $peep = Peep.new
       erb (:index)
   end
 
 enable :sessions
 
   get '/list-peeps' do
-      @peep = Peep.new
       erb (:view_add_peeps)
   end
 
   post '/save-peeps' do
-      session[:peep] = params[:peep]
+      $peep.add_peep(params[:peepshow])
       redirect '/list-peeps'
   end
 
