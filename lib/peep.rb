@@ -5,9 +5,9 @@ class Peep
 
     attr_reader :list_of_peeps
 
-    def initialize
-        @list_of_peeps = []
-    end
+    # def initialize
+    #     @list_of_peeps = []
+    # end
 
     def self.all
         if ENV['ENVIRONMENT'] == 'test'
@@ -31,11 +31,10 @@ class Peep
 
     end
 
-
-
-    def add_peep(peep)
-        @list_of_peeps.push(peep)
-    end
-
+    #
+    #
+    # def add_peep(peep)
+    #     @list_of_peeps.push(peep)
+    # end
 
 end
