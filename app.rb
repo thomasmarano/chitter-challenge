@@ -12,11 +12,23 @@ class PeepManager < Sinatra::Base
 enable :sessions
 
   get '/list-peeps' do
+      @peeps = Peep.all
       erb (:view_add_peeps)
   end
 
+  # <% if $peep.list_of_peeps.length > 0 %>
+  #     <% $peep.list_of_peeps.each do |each_peep| %>
+  #         <ul>
+  #             <li><%=each_peep%></li>
+  #         </ul>
+  #     <% end %>
+  # <% end %>
+
   post '/save-peeps' do
-      $peep.add_peep(params[:peepshow])
+      # p 'TESTING NEW'
+      # p params[:peepshow]
+      Peep.add_peep_db(params[:peepshow])
+      #$peep.add_peep(params[:peepshow])
       redirect '/list-peeps'
   end
 

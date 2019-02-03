@@ -1,12 +1,9 @@
 <h1>List of Peeps</h1>
 
-<% if $peep.list_of_peeps.length > 0 %>
-    <% $peep.list_of_peeps.each do |each_peep| %>
-        <ul>
-            <li><%=each_peep%></li>
-        </ul>
-    <% end %>
+<% @peeps.each do |peep| %>
+  <li><%=peep%></li>
 <% end %>
+
 
 <form action='/save-peeps' method='post'>
     <input type='text' name='peepshow'/>
