@@ -2,6 +2,11 @@ require 'pg'
 
 class Peep
 
+    # attr_reader :peep
+    #
+    # def initialize(peep)
+    #     @peep = peep
+    # end
 
     def self.all
         if ENV['ENVIRONMENT'] == 'test'
@@ -23,9 +28,7 @@ class Peep
         else
             connection = PG.connect(dbname: 'peep_database_real')
         end
-
         result = connection.exec("INSERT INTO peeps (peep) VALUES ('#{peep}') RETURNING peep")
-
     end
 
 end

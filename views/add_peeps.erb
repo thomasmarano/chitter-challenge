@@ -1,10 +1,3 @@
-<h1>List of Peeps</h1>
-
-<% @peeps.reverse.each do |peep| %>
-  <li><%=peep%></li>
-<% end %>
-
-
 <form action='/save-peeps' method='post'>
     <input type='text' name='peepshow'/>
     <input type='submit' value='Post'/>

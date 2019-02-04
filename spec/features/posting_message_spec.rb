@@ -5,7 +5,7 @@ require_relative "../../app"
 feature 'posting message' do
     scenario 'post message and see it displayed' do
         visit '/'
-        click_on('View Bookmarks')
+        click_on('View All Peeps')
         fill_in('peepshow', with: 'Test Message')
         click_on('Post')
         expect(page).to have_content('Test Message')
