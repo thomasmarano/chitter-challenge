@@ -22,8 +22,8 @@ enable :sessions
 
   post '/save-peeps' do
       session[:peepshow] = params[:peepshow]
-      Peep.add_peep_db(params[:peepshow])
-      #redirect '/list-peeps'
+      time = Time.new.to_s
+      Peep.add_peep_db(params[:peepshow], time)
       redirect '/add-confirmation'
   end
 

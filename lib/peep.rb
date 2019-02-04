@@ -2,11 +2,12 @@ require 'pg'
 
 class Peep
 
-    # attr_reader :peep
-    #
-    # def initialize(peep)
-    #     @peep = peep
-    # end
+    attr_reader :peep, :time
+
+    def initialize(peep, time)
+        @peep = peep
+        @time = time
+    end
 
     def self.all
         if ENV['ENVIRONMENT'] == 'test'
@@ -18,17 +19,18 @@ class Peep
         result = connection.exec("SELECT * FROM peeps;")
 
         result.map do |peep|
-            peep['peep']
+            Peep.new(peep['peep'], peep['time'])
         end
     end
 
-    def self.add_peep_db(peep)
+    def self.add_peep_db(peep, time)
         if ENV['ENVIRONMENT'] == 'test'
             connection = PG.connect(dbname: 'peep_database_test')
         else
             connection = PG.connect(dbname: 'peep_database_real')
         end
-        result = connection.exec("INSERT INTO peeps (peep) VALUES ('#{peep}') RETURNING peep")
+        result = connection.exec("INSERT INTO peeps (peep, time) VALUES ('#{peep}', '#{time}') RETURNING peep, time")
+        Peep.new(result[0]['peep'], result[0]['time'])
     end
 
 end

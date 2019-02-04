@@ -1,7 +1,7 @@
 <h1>List of Peeps</h1>
 
 <% @peeps.reverse.each do |peep| %>
-  <li><%=peep%></li>
+  <li><%=peep.peep%> posted at <%=peep.time%></li>
 <% end %>
 
 
